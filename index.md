@@ -1,9 +1,9 @@
 ---
-title: "Dept 999: Generic Description"
+title: "Stat 238: Bayesian Statistics"
 subtitle: "UC Berkeley, Spring 2026"
 ---
 
-Welcome to Department 999, a comprehensive introduction to the fundamental concepts and methodologies that form the backbone of modern academic inquiry. This course is designed to provide students with both theoretical understanding and practical skills necessary for success in their chosen field of study.
+Welcome to Stat 238, a comprehensive introduction to the fundamental concepts and methodologies that form the backbone of modern academic inquiry. This course is designed to provide students with both theoretical understanding and practical skills necessary for success in their chosen field of study.
 
 ## Course Overview
 
