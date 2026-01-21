@@ -37,11 +37,11 @@ subtitle: 'UC Berkeley, Spring 2026'
 
 # Syllabus
 
-Basic information about the course can be found in the [syllabus](syllabus.pdf).
+Basic information about the course can be found in the [syllabus](./syllabus.pdf).
 
 # Topics
 
-Here is a tentative list of topics [topics](topics.pdf)
+Here is a tentative list of topics [topics](./topics.pdf)
 
 # Schedule
 
