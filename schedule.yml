@@ -5,10 +5,4 @@
         - type: 'Lecture'
           id: '1'
           name: "Introduction"
-          href: ./syllabus.pdf
-    - date: 'Jan 23'
-      items:
-        - type: 'Lecture'
-          id: '2'
-          name: "Simple Examples of Bayesian Inference"
-          href: ./topics.pdf
+          href: './LectureOneSlides153248Fall2025PDF.pdf'
