@@ -1,23 +1,49 @@
 ---
-title: "Stat 238: Bayesian Statistics"
-subtitle: "UC Berkeley, Spring 2026"
+title: "STAT 238: Bayesian Statistics"
+subtitle: 'UC Berkeley, Spring 2026'
 ---
 
-Welcome to Stat 238, a comprehensive introduction to the fundamental concepts and methodologies that form the backbone of modern academic inquiry. This course is designed to provide students with both theoretical understanding and practical skills necessary for success in their chosen field of study.
+::::{grid} 1 2 2 2
 
-## Course Overview
+:::{card}
+:header: **Aditya Guntuboyina (Instructor)**
 
-The course meets twice weekly for lectures and once weekly for discussion sections. Additionally, there are regular laboratory sessions where you'll apply theoretical concepts to real-world problems. Guest speakers from industry and academia will provide insights into current applications and career opportunities. 
++++
 
-:::{attention} There is a quiz in [Week 2](#week2)!
-:class: dropdown
-:icon: false
-👋
+[aditya@stat.berkeley.edu](mailto:aditya@stat.berkeley.edu)
+
+**Office Hours (Evans 443)**:
+ - Monday and Friday 2-3 pm
+
 :::
 
-## Schedule
+::::
 
-The table below is rendered by the `schedule` plugin, contributed by [rowanc1](https://github.com/rowanc1). It is declared in `myst.yml` and contained within `schedule.mjs`. It reads in the data in `schedule.yml` and converts it into a table.
+::::{grid} 1 1
+:::{card}
+:header: **Reece D Huff (GSI)**
+
++++
+
+[rdhuff@berkeley.edu](mailto:rdhuff@berkeley.edu)
+
+**Office Hours (Evans 444)**:
+ - Tuesdays 3-5 pm
+ - Wednesdays 11 am - 12 pm
+
+:::
+
+::::
+
+# Syllabus
+
+Basic information about the course can be found in the [syllabus](syllabus.pdf).
+
+# Topics
+
+Here is a tentative list of topics [topics](topics.pdf)
+
+# Schedule
 
 :::{schedule} ./schedule.yml
 
