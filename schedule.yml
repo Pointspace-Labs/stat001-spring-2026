@@ -4,9 +4,11 @@
       items:
         - type: 'Lecture'
           id: '1'
-          name: Introduction
+          name: "Introduction"
+          href: ./syllabus.pdf
     - date: 'Jan 23'
       items:
         - type: 'Lecture'
           id: '2'
-          name: Simple Examples of Bayesian Inference
+          name: "Simple Examples of Bayesian Inference"
+          href: ./topics.pdf
