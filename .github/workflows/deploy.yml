@@ -33,10 +33,17 @@ jobs:
           node-version: 22.x
       - name: Install MyST Markdown
         run: npm install -g mystmd
+      - name: Install Typst
+        run: |
+          wget https://github.com/typst/typst/releases/download/v0.12.0/typst-x86_64-unknown-linux-musl.tar.xz
+          tar -xf typst-x86_64-unknown-linux-musl.tar.xz
+          sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
       - name: Install the plugins
         run: npm install
       - name: Build HTML Assets
         run: myst build --html --ci
+      - name: Build PDF Exports
+        run: myst build --typst --ci
       - name: Inject Siteimprove analytics
         run: node inject-siteimprove.js
       - name: Upload artifact
