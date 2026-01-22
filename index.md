@@ -38,7 +38,7 @@ Basic information about the course can be found in the {download}`syllabus <syll
 
 # Topics
 
-Here is a tentative list of topics {download}`topics <topics.pdf>`.
+Here is a tentative list of {download}`topics <topics.pdf>`.
 
 # Schedule
 
