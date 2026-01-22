@@ -32,7 +32,7 @@ jobs:
         with:
           node-version: 22.x
       - name: Install MyST Markdown
-        run: npm install -g mystmd@1.7.0
+        run: npm install -g mystmd
       - name: Install the plugins
         run: npm install
       - name: Build HTML Assets
