@@ -16,25 +16,24 @@
 #  website: https://
 #  pronouns: They/Them
 
-- name: Instructor Name
+- name: Aditya Guntuboyina
   role: Instructor
-  email: example@berkeley.edu
-  photo: images/firefly-instructor.jpg
+  email: aditya@stat.berkeley.edu
+  #photo: images/firefly-instructor.jpg
   office-hours:
-    - when: Wednesday, 1pm - 2pm
-      where: Online
-      link: https://berkeley.zoom.us
-  about-me: |
-    I am an instructor, and here is a brief bio.
+    - when: Monday and Friday, 2pm - 3pm
+      where: Evans 443
+      #link: https://berkeley.zoom.us
+  #about-me: |
+  #  I am an instructor, and here is a brief bio.
 
-- name: GSI Name
-  role: Teaching Assistant
-  email: example@berkeley.edu
-  photo: images/firefly-gsi.jpg
+- name: Reece D Huff
+  role: GSI
+  email: rdhuff@berkeley.edu
+  #photo: images/firefly-gsi.jpg
   office-hours:
-    - when: Monday, 5pm - 6pm
-      where: 367 Evans Hall
-  about-me: |
-    I am a GSI, and here is a brief bio.
-  website: https://example.org/about-me
-  pronouns: She/Her
+    - when: Tuesdays 3pm - 5pm, Wednesdays 11am - 12pm
+      where: Evans 444
+  #about-me: |
+  #  I am a GSI, and here is a brief bio.
+  #website: https://example.org/about-me
