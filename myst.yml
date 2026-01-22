@@ -36,16 +36,8 @@ project:
     - format: typst
       template: lapreprint-typst
       article: LectureOne238Spring2026.tex
-      output: exports/lecture-one.pdf
+      output: exports/LectureOne238Spring2026.pdf
       id: lecture-one-pdf
-  downloads:
-    - id: syllabus-pdf
-      title: Download as PDF
-    - id: topics-pdf
-      title: Download as PDF
-    - id: lecture-one-pdf
-      title: Download as PDF
-
 
 site:
   template: book-theme
