@@ -50,6 +50,11 @@ const classes = {
     color: 'white',
     padding: 5
   },
+  pdf: { background: '#FF5733',
+    borderRadius: 8,
+    color: 'white',
+    padding: 5
+  },
 };
 
 const scheduleDirective = {
