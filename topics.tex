@@ -1,0 +1,239 @@
+\documentclass{article}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage[numbers]{natbib}
+%\usepackage[colorlinks]{hyperref}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,%
+    citecolor=black,%
+    filecolor=black,%
+    linkcolor=black,%
+    urlcolor=black
+}
+\usepackage{hypernat}
+\usepackage[top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry}
+% \usepackage{marvosym}
+\usepackage{comment}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\E}{{\mathbb E}}
+\newcommand{\se}{{\mathcal{E}}}
+\newcommand{\R}{{\mathbb R}}
+\renewcommand{\P}{{\mathbb P}}
+\newcommand{\ac}{{\mathcal{A}}}
+\newcommand{\A}{{\mathcal{A}}}
+\newcommand{\B}{{\mathcal{B}}}
+\newcommand{\C}{{\mathcal{C}}}
+\newcommand{\T}{{\mathcal{T}}}
+\newcommand{\Z}{{\mathcal{Z}}}
+\newcommand{\K}{{\mathcal{K}}}
+\newcommand{\Ps}{{\mathcal{P}}}
+\newcommand{\G}{{\mathcal{G}}}
+\newcommand{\pa}{{\mathring{p}}}
+\newcommand{\F}{{\cal F}}
+\newcommand{\samp}{{\mathcal{X}}}
+\newcommand{\X}{{\mathcal{X}}}
+\newcommand{\hi}{{\hat{\Phi}}}
+\newcommand{\ham}{{\Upsilon}}
+
+\newcommand{\ach}{{\breve{a}}}
+
+\def\qt#1{\qquad\text{#1}}
+
+\def\argmin{\mathop{\rm argmin}}
+\def\argmax{\mathop{\rm argmax}}
+
+
+\newcounter{rcnt}[section]
+\renewcommand{\thercnt}{(\roman{rcnt})}
+
+
+\setlength{\parskip}{1.5 \medskipamount}
+\sloppy
+\linespread{1.3}
+
+
+\begin{document}
+
+\title{List of Topics for STAT 238 \\ Spring 2026}
+
+\author{Adityanand Guntuboyina}
+
+\date{19 Jan 2026}
+
+\maketitle
+
+\noindent
+
+Here is a tentative list of topics. The list is on the longer side. I
+will trim it as we move along, and may also add one or two additional
+topics.  
+
+\begin{enumerate}
+\item Fundamentals of Bayesian Inference
+  \begin{itemize}
+  \item Bayesian Statistics is just probability theory
+  \item Discussion of the meaning of probability and justification
+    of the rules of probability
+  \item Toy problems illustrating important differences between
+    frequentist and Bayesian statistics   
+  \end{itemize}
+  References:
+  \begin{enumerate}
+  \item   \textit{Probability Theory -- the logic of science}
+ E. T. Jaynes: Chapters 1 and 2
+  \item \textit{Information Theory, Inference, and Learning
+      Algorithms} by David MacKay: Chapter 3 and parts of Section IV
+  \end{enumerate}
+
+\item Estimation and some hypothesis testing in simple parametric
+  models.
+  \begin{itemize}
+  \item Estimation of proportions in Hypergeometric, Binomial and
+    Normal settings
+  \item Extensions to Empirical Bayes settings  
+  \end{itemize}
+
+  References:
+  \begin{enumerate}
+  \item \textit{Probability Theory -- the logic of science}
+ E. T. Jaynes: Chapters 3 - 7. 
+  \item \textit{Bayesian Data Analysis Third Edition} by Gelman,
+    Carlin, Stern, Dunson, Vehtari and Rubin: Chapters 1 - 3.
+  \item \textit{Bayesian probability theory -- applications in the
+      physical sciences} by von der Linden, Dose and von Toussaint:
+    Part III and Part IV
+  \item \textit{A first course in Bayesian Statistical Methods} by
+    Hoff: Chapters 3 and 5. 
+  \end{enumerate}
+
+\item Linear regression and Generalized Linear Models.
+  \begin{itemize}
+  \item Analysis with default priors and equivalence to usual
+    frequentist inference
+  \item Autoregression and Models with nonlinear parameter dependence  
+  \item Model selection
+  \item High-dimensional settings  
+  \end{itemize}
+  References:
+  \begin{enumerate}
+  \item \textit{Bayesian Data Analysis Third Edition} by Gelman,
+    Carlin, Stern, Dunson, Vehtari and Rubin: Chapters 4, 14, 16
+  \item \textit{An introduction to Bayesian inference in Econometrics}
+    by Zellner: Chapter III
+  \item \textit{A first course in Bayesian Statistical Methods} by
+    Hoff: Chapter 9.     
+  \end{enumerate}
+
+\item Nonparametric Regression using Gaussian Processes
+  \begin{itemize}
+  \item Basics of Gaussian processes and kernels
+  \item Connection to Reproducing Kernel Hilbert Spaces
+  \item Application to Bayesian Optimization  
+  \end{itemize}
+  References:
+  \begin{enumerate}
+  \item \textit{Gaussian Processes for Machine Learning} by Rasmussen
+    and Williams: Chapters 1, 2, 6
+  \item \textit{Scattered Data Approximation} by Wendland.
+  \item \textit{Bayesian Optimization} by Garnett
+  \end{enumerate}
+
+\item Bayesian Computation
+  \begin{itemize}
+  \item Basics of Monte Carlo Sampling: Importance Sampling and
+    Rejection Sampling
+  \item Markov Chain Monte Carlo
+    \begin{itemize}
+    \item Metropolis-Hastings
+    \item Gibbs Sampling
+    \item Langevin Monte Carlo and Metropolis Adjusted Langevin
+      Algorithm
+    \item Hamiltonian Monte Carlo  
+    \end{itemize}
+  \item Variational Inference
+  \item Improved versions of the above techniques using neural
+    networks   
+  \end{itemize}
+  References:
+  \begin{enumerate}
+  \item \textit{Random number generation and Quasi Monte Carlo
+      Methods} by Niederreiter
+  \item \textit{Monte Carlo theory, methods and examples} by Owen
+    (available at \url{https://artowen.su.domains/mc/})
+  \item \textit{Information theory, inference and learning algorithms}
+    by MacKay: Chapters 29, 30, 33
+  \item \textit{Bayesian probability theory -- applications in the
+      physical sciences} by von der Linden, Dose and von Toussaint:
+    Chapters 29, 30
+  \item \textit{Handbook of Markov Chain Monte Carlo}: Chapter 5 (by
+    Neal on HMC)
+  \item \textit{Probabilistic inference using MCMC methods} by Neal
+    (1993)
+  \item \textit{Variational Bayesian Learning Theory} by Nakajima,
+    Watanabe and Sugiyama
+  \item \textit{Scalable Monte Carlo for Bayesian Learning}  by
+    Fearnhead, Nemeth, Oates and Sherlock
+  \item \textit{Log-concave Sampling} by Chewi
+  \end{enumerate}
+  For neural network improvements, some papers are:
+  \begin{enumerate}
+  \item \textit{Learning to sample better} by Albergo and
+    Vanden-Eijnden (2023)
+  \item \textit{Variational inference with normalizing flows} by
+    Rezende and Mohamed (2016)
+  \item \textit{FFJORD: free-form continuous dynamics for scalable
+      reversible generative models} by Grathwohl, Chen, Bettencourt,
+    Sutskever and Duvenaud (2019)
+  \item \textit{Neural spline flows} by Durkan, Bekasov, Murray,
+    Papamakarios (2019)
+  \end{enumerate}
+
+\item Advanced Applications
+  \begin{itemize}
+  \item Hierarchical and multilevel regression Models 
+  \item Bayesian variable selection and sparse high-dimensional linear
+    regression 
+  \item Mixture models and latent variable models
+  \item Bayesian neural networks   
+  \item Bayesian additive regression trees
+  \item Bayesian optimization and probabilistic numerics.
+  \item Bayesian inverse problems  
+  \end{itemize}
+
+  References:
+  \begin{enumerate}
+  \item \textit{The BUGS book -- a practical introduction to Bayesian
+      Analysis} by Lunn, Jackson, Best, Spiegelhalter.
+  \item \textit{Handbook of Bayesian Variable Selection} edited by
+    Tadesse and Vannucci.
+  \item \textit{Bayesian Data Analysis Third Edition} by Gelman,
+    Carlin, Stern, Dunson, Vehtari and Rubin: Chapter 22. And
+    \textit{Bayesian essentials with R} by Marin and Robert: Chapter 6
+  \item \textit{Bayesian learning for neural networks} by Neal. And \textit{Information theory, inference and learning algorithms}
+    by MacKay: Part V.
+  \item \textit{Bayesian Modeling and Computation in Python} by
+    Martin, Kumar and Lao: Chapter 7
+  \item \textit{Bayesian Optimization} by Garnett
+  \item \textit{Statistical and computational inverse problems} by
+    Kaipio and Somersalo
+  \end{enumerate}
+  
+\end{enumerate}
+
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

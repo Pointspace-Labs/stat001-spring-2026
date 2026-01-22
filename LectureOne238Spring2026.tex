@@ -1,0 +1,260 @@
+%\documentclass[12pt,oneside]{amsart}
+\documentclass{scrartcl}
+
+%\documentclass{article}
+
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage[numbers]{natbib}
+
+%\usepackage[colorlinks]{hyperref}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,%
+    citecolor=black,%
+    filecolor=black,%
+    linkcolor=black,%
+    urlcolor=black
+}
+\usepackage{hypernat}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.8cm,
+right=2.8cm]{geometry} 
+
+%\setlength{\parskip}{0pt}
+%\setlength{\parsep}{0pt}
+%\setlength{\headsep}{0pt}
+%\setlength{\topskip}{0pt}
+%\setlength{\topmargin}{0pt}
+%\setlength{\topsep}{0pt}
+%\setlength{\partopsep}{0pt}
+
+\linespread{1}
+
+%\usepackage{marvosym}
+
+%\textwidth = 6.5 in \textheight = 9.2 in \oddsidemargin = 0.0 in
+%\evensidemargin = 0.0 in \topmargin = -0.0 in \headheight = 0.0 in
+%\headsep = 0.0in \parskip = 0.0in \parindent = 0.0in
+%\def\baselinestretch{0.871}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{defn}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\E}{{\mathbb E}}
+\newcommand{\se}{{\mathcal{E}}}
+\newcommand{\R}{{\mathbb R}}
+\renewcommand{\P}{{\mathbb P}}
+\newcommand{\ac}{{\mathcal{A}}}
+\newcommand{\A}{{\mathcal{A}}}
+\newcommand{\B}{{\mathcal{B}}}
+\newcommand{\C}{{\mathcal{C}}}
+\newcommand{\M}{{\mathcal{M}}}
+\newcommand{\Mf}{{\mathfrak{M}}}
+\newcommand{\T}{{\mathcal{T}}}
+\newcommand{\Z}{{\mathcal{Z}}}
+\newcommand{\K}{{\mathcal{K}}}
+\newcommand{\lc}{{\mathcal{L}}}
+\newcommand{\Ps}{{\mathcal{P}}}
+\newcommand{\G}{{\mathcal{G}}}
+\newcommand{\pa}{{\mathring{p}}}
+\newcommand{\F}{{\cal F}}
+\newcommand{\samp}{{\mathcal{X}}}
+\newcommand{\X}{{\mathcal{X}}}
+\newcommand{\hi}{{\hat{\Phi}}}
+\newcommand{\data}{{\text{data}}}
+
+\newcounter{rcnt}[section]
+\renewcommand{\thercnt}{(\roman{rcnt})}
+
+\def\qt#1{\qquad\text{#1}}
+
+\def\argmin{\mathop{\rm argmin}}
+\def\argmax{\mathop{\rm argmax}}
+
+
+\setlength{\parskip}{1.4 \medskipamount}
+%\sloppy
+%\linespread{1.3}
+
+\begin{document}
+
+\title{STAT 238 - Bayesian Statistics  \\
+  Lecture One} 
+%\subtitle{Spring 2026, UC Berkeley}
+
+\author{Aditya Guntuboyina}
+
+
+\date{21 Jan 2026}
+
+\maketitle
+
+\section{What is Bayesian Statistics?}
+
+Bayesian Statistics = Probability Theory
+
+This is the central message of the book ``Probability Theory -- the
+logic of Science'' by E. T. Jaynes which is arguably the most
+important book on Bayesian Statistics. 
+
+\section{How does Bayesian Statistics work?}
+
+Probability works in the following way. We are interested in
+knowing whether a certain 
+proposition is true, and we do not have access to full
+information that 
+would allow us to conclusively determine whether the proposition is
+true or not. Probability theory allows us to determine a number
+between 0 and 1 representing how likely it is that the proposition is
+true based on the available information. This is achieved by the
+following two steps:
+\begin{enumerate}
+\item \textbf{Step One}: The available information that we either
+  possess or that we assume for the sake of argument is converted
+  into \textbf{numerical assignments} for the probabilities of certain
+  basic or elementary propositions. This step is often referred to as
+  the \textbf{modeling} step.
+\item \textbf{Step Two}: Based on the probability model, we calculate
+  probabilities of the propositions of interest using the
+  \textbf{rules of probability}. 
+\end{enumerate}
+
+In the context of Bayesian statistics, the unknown proposition is
+usually written in terms of a variable $\Theta$ e.g., $\Theta \in
+A$ for some set $A$. The goal is to calculate the probability:
+\begin{equation}\label{posterior}
+  \P \{\Theta \in A \mid \text{observed data and other background
+    information}\}.
+\end{equation}
+The modeling step involves specification of:
+\begin{equation}\label{likelihood}
+  \P\{\text{observed data} \mid \Theta = \theta \text{ and background
+    information} \}  
+\end{equation}
+as well as
+\begin{equation}\label{prior}
+  \P\{\Theta = \theta \mid \text{background information}\} \text{ or }
+  f_{\Theta \mid \text{background information}}(\theta)
+\end{equation}
+It is okay to simply think of all these as just
+probabilities. However, it is common to use the following
+terminology. \eqref{prior} is called the prior model (or prior
+distribution), \eqref{likelihood} is called the likelihood, and
+\eqref{posterior} is called posterior probability. 
+
+\section{Rules of Probability}
+Probabilities are assigned to propositions (also known as
+events). Every probability is conditional on some information (this
+could be available information or some information that we assume for
+the sake of argument). We shall denote the probability of a
+proposition $A$ conditioned on some information $I$ by $\P(A \mid
+I)$. When the information $I$ is clear from context, we sometimes omit
+it and write the probability $\P(A \mid I)$ as simply $\P(A)$. Even
+when we do this, it should always be kept in mind that probabilities
+are always conditioned on some information. 
+\begin{enumerate}
+\item The probability of a proposition always lies between 0 and
+  1. The probability of an impossible proposition is 0 and the
+  probability of a certain proposition is 1.
+\item \textbf{Product Rule}: $\P(A \cap B \mid I) = \P(A \mid I) \P(B
+  \mid A, I) =
+  \P(B \mid I) \P(A \mid B, I)$. Here $A \cap B$ is the proposition: ``both $A$
+  and $B$ are true''. Also $\P(A \mid B, I)$ is the probability of $A$
+  conditioned on the truth of the proposition $B$ as well as the
+  information $I$. A direct consequence of the product rule is:
+  \begin{equation*}
+    \P(B \mid A, I) = \frac{\P(A \mid B, I) \P(B \mid I)}{\P(A \mid
+      I)}. 
+  \end{equation*}
+  The above formula is known as the Bayes rule. 
+\item \textbf{Sum Rule}: If a proposition $A$ is broken down into
+  disjoint propositions $A_1, A_2, \dots$, then
+  \begin{equation*}
+    \P(A \mid I) = \sum_{i}\P(A_i \mid I)
+  \end{equation*}
+  Disjoint here means that no two of $A_i$s can happen
+  simultaneously. For the sum rule, we need
+  \begin{equation*}
+    A \text{ happens} \iff \text{exactly one of } A_i \text{
+      happens}. 
+  \end{equation*}
+\end{enumerate}
+We shall see some justification for these rules later. All other rules
+of probability follow as a consequence of these rules. For example,
+the Bayes rule states that:
+\begin{equation*}
+  \P\left(B \mid A, I \right) = \frac{\P\left(A \mid B, I \right) \P
+    \left(B \mid I \right)}{\P\left(A \mid B, I \right) \P
+    \left(B \mid I \right) + \P\left(A \mid B^c, I \right) \P
+    \left(B^c \mid I \right)}
+\end{equation*}
+
+\section{Example 1: Testing and Covid}
+\begin{problem}
+  Suppose I just tested positive for Covid. Do I really have Covid?
+\end{problem}
+
+Let $\Theta$ denote the binary parameter which represents whether I
+truly have Covid or not ($\Theta = 1$ when I have Covid and $\Theta =
+0$ when I don't). Let $X$ denote the binary outcome of the Covid test
+so that $X = 1$ represents the positive test. We need to calculate the
+probability:
+\begin{equation}\label{post_covid}
+  \P \left\{\Theta = 1 \mid \text{test data} \text{ and } \text{background
+      information} \right\} 
+\end{equation}
+where test data is simply $X = 1$, and the background information
+refers to things like ``I have been strictly
+quarantining for the past 3 weeks'', ``I do not have symptoms such as
+fever'' etc.
+
+In order to calculate the posterior probability \eqref{post_covid}, we
+need to introduce probability assumptions. Consider the following
+model (below $B$ stands for background information)
+\begin{equation}\label{cancer_assign}
+  \P(\Theta = 1 \mid B) = 0.02 ~~~ \P(X = 1\mid \Theta = 1, B) = 0.99 ~~~
+  \P(X = 1 \mid \Theta = 0, B) = 0.04. 
+\end{equation}
+$\P(\Theta = 1 \mid B)$ represents the probability of Covid based on
+background information alone (this is the prior). The fact that it is
+low ($0.02$) is meaningful when I know that I have been largely
+isolating myself for the past few weeks.
+
+$\P(X = 1 \mid \Theta = 1, B) = 0.99$ (true positive rate) and $\P(X =
+1 \mid \Theta = 0, B) = 0.04$ (false positive rate) represent the
+likelihood. 
+
+With these probability assignments, we use the Bayes rule to compute 
+\eqref{post_covid} as
+\begin{align*}
+  \P(\Theta = 1 \mid X = 1, B) &= \frac{\P(X  = 1 
+                    \mid \Theta = 1, B) \P(\Theta = 1 \mid B)}{\P(X = 1
+                    \mid \Theta = 1, B) \P(\Theta = 1 \mid B) + \P(X = 0
+                                 \mid \Theta = 0, B) \P(\Theta = 0 \mid B)} \\
+  &= \frac{0.99 *
+      0.02}{0.99 * 0.02 + 0.04*0.98} = 0.3356. 
+\end{align*}
+Thus, under the assumed probability model, there is a 33.56\% chance
+that I am truly covid positive given the positive test. Note that
+$0.3356$ ($33.56 \%$) is not very high even 
+  though the test has very good false positive and false negative
+  rates. This is because $\P(\Theta = 1 \mid B)$ (which can be
+  interpreted as probability of having Covid without taking into the
+  account the test result) is very low   ($0.02$). 
+
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

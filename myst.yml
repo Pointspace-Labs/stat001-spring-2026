@@ -25,6 +25,12 @@ project:
    - staff.mjs
   toc:
    - file: index.md
+   - file: syllabus.tex
+     hidden: true
+   - file: topics.tex
+     hidden: true
+   - file: LectureOne238Spring2026.tex
+     hidden: true
    - file: staff.md
 site:
   template: book-theme

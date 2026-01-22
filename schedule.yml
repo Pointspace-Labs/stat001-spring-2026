@@ -5,4 +5,4 @@
         - type: 'Lecture'
           id: '1'
           name: "Introduction"
-          href: './LectureOne238Spring2026.pdf'
+          href: './LectureOne238Spring2026.tex'

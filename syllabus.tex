@@ -1,0 +1,218 @@
+\documentclass[12pt,oneside]{amsart}
+
+%\documentclass{article}
+
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage[numbers]{natbib}
+
+%\usepackage[colorlinks]{hyperref}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,%
+    citecolor=black,%
+    filecolor=black,%
+    linkcolor=black,%
+    urlcolor=black
+}
+\usepackage{hypernat}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.8cm,
+right=2.8cm]{geometry} 
+
+%\setlength{\parskip}{0pt}
+%\setlength{\parsep}{0pt}
+%\setlength{\headsep}{0pt}
+%\setlength{\topskip}{0pt}
+%\setlength{\topmargin}{0pt}
+%\setlength{\topsep}{0pt}
+%\setlength{\partopsep}{0pt}
+
+\linespread{1}
+
+%\usepackage{marvosym}
+
+%\textwidth = 6.5 in \textheight = 9.2 in \oddsidemargin = 0.0 in
+%\evensidemargin = 0.0 in \topmargin = -0.0 in \headheight = 0.0 in
+%\headsep = 0.0in \parskip = 0.0in \parindent = 0.0in
+%\def\baselinestretch{0.871}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{defn}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\E}{{\mathbb E}}
+\newcommand{\se}{{\mathcal{E}}}
+\newcommand{\R}{{\mathbb R}}
+\renewcommand{\P}{{\mathbb P}}
+\newcommand{\ac}{{\mathcal{A}}}
+\newcommand{\A}{{\mathcal{A}}}
+\newcommand{\B}{{\mathcal{B}}}
+\newcommand{\C}{{\mathcal{C}}}
+\newcommand{\T}{{\mathcal{T}}}
+\newcommand{\Z}{{\mathcal{Z}}}
+\newcommand{\K}{{\mathcal{K}}}
+\newcommand{\lc}{{\mathcal{L}}}
+\newcommand{\Ps}{{\mathcal{P}}}
+\newcommand{\G}{{\mathcal{G}}}
+\newcommand{\pa}{{\mathring{p}}}
+\newcommand{\F}{{\cal F}}
+\newcommand{\samp}{{\mathcal{X}}}
+\newcommand{\X}{{\mathcal{X}}}
+\newcommand{\hi}{{\hat{\Phi}}}
+
+
+\newcounter{rcnt}[section]
+\renewcommand{\thercnt}{(\roman{rcnt})}
+
+\def\qt#1{\qquad\text{#1}}
+
+\def\argmin{\mathop{\rm argmin}}
+\def\argmax{\mathop{\rm argmax}}
+
+
+\setlength{\parskip}{1.4 \medskipamount}
+%\sloppy
+%\linespread{1.3}
+
+\begin{document}
+
+\title{STAT 238: Bayesian Statistics}
+\author{Instructor: Aditya Guntuboyina \\ Course Outline for Spring
+  2026 \\ University of California, Berkeley}  
+
+\maketitle
+
+\begin{itemize}
+\item \textbf{Instructor}: Aditya Guntuboyina. Email:
+  \texttt{aditya@stat.berkeley.edu} and Website: 
+  \url{www.stat.berkeley.edu/~aditya}
+\item \textbf{Lectures}: 1 pm to 1:59 pm on Mondays, Wednesdays and
+  Fridays in 9 Lewis Hall. 
+\item \textbf{Office Hours}: 2-3 pm on Mondays and
+  Fridays in 443 Evans Hall. 
+\item \textbf{GSI}: Reece D Huff. Email: \texttt{rdhuff@berkeley.edu}
+\item \textbf{GSI Lab Section}: 9 am - 10:59 am  or 12 pm -
+  1:59 pm in 340 Evans Hall on Tuesdays  
+\item \textbf{GSI Office Hours}: 3-5 pm on Tuesdays and 11 am - 12 pm
+  on Wednesdays in 444 Evans Hall
+\end{itemize}
+
+\noindent \textbf{About the course}: This course develops Bayesian
+statistics from first principles of probability, emphasizing
+interpretation, coherence, and contrasts with frequentist inference,
+then moves through core parametric estimation and testing problems
+(including empirical Bayes), linear and generalized linear models,
+model selection, and high-dimensional regression. It introduces
+nonparametric regression via Gaussian processes and kernels, with
+connections to RKHS theory and applications such as Bayesian
+optimization. A substantial component focuses on Bayesian
+computation—Monte Carlo methods, MCMC (including Langevin and
+Hamiltonian dynamics), variational inference, and modern
+neural-network–enhanced sampling and approximation techniques. The
+course culminates in advanced applications, including hierarchical and
+multilevel models, sparse and variable-selection methods, mixture and
+latent variable models, Bayesian neural networks and trees,
+probabilistic numerics, optimization, and inverse problems. 
+
+\noindent \textbf{Prerequisites}: Undergraduate probability at the
+level of STAT 134, DATA 140, or EE 126 is required. In addition,
+undergraduate statistics at the level of STAT 133 and STAT 135 is
+required. 
+
+\noindent \textbf{Programming Language}: You are free to use any
+language (e.g., R, Python, Julia, Matlab etc.) for working on your
+homework. We will be using Python code in class and the lab sections. 
+
+\noindent \textbf{Text}: There is no required textbook for the
+class. A variety of references will be provided, and you are welcome
+to consult any of them. 
+
+I will provide materials for each lecture (including slides or typed
+lecture notes, and code) which will be posted \textit{after} the
+lecture. 
+
+\noindent \textbf{Ed Discussion}: I have created a site
+for this class at Ed Discussion and we will use this platform for Q \&
+A.
+
+\noindent \textbf{Homework assignments}: There will be six homework
+assignments. Your lowest homework score will be dropped when
+calculating the final grade, and all remaining homework assignments
+will be weighted equally. 
+
+The homework assignments Will be posted on bcourses
+according to the following schedule. Solutions will need to be
+uploaded on Gradescope. 
+\begin{itemize}
+\item Homework One - will be posted on Jan 30 and due on Feb 13
+\item Homework Two - will be posted on Feb 13 and due on Feb 27
+\item Homework Three - will be posted on Feb 27 and due on March 13
+\item Homework Four - will be posted on March 13 and due on April 03
+\item Homework Five - will be posted on April 03 and due on April 17
+\item Homework Six - will be posted on April 17 and due on May 01  
+\end{itemize}
+You have a total of 120 late hours that you can apply to your homework
+for the entire semester. No points will be awarded for any homework
+which brings the total late hours to more than 120.   
+
+\noindent \textbf{Final Project}: There will be a final project. I
+will post a list of suggested topics by April 1. Each student will
+work individually on one topic (students may propose a topic outside
+the list with prior approval). 
+
+Each student is required to record a 20–25 minute presentation
+explaining their project and findings, and to submit a Jupyter
+notebook that fully reproduces all numerical analyses. Both the
+presentation video and the notebook must be uploaded to bCourses by
+11:59 PM on May 11. 
+
+\noindent \textbf{Assessment}: Your final score for the class will be
+calculated as
+\begin{equation*}
+  50 \%~ \text{Homework} + 50 \% ~ 
+  \text{Final Project}.  
+\end{equation*}
+Each homework assignment is worth an equal amount (we will drop the
+lowest homework score).  
+
+
+\noindent \textbf{Grade Complaints}: If you have a complaint
+against an assigned homework or project grade and want to talk to me
+about it, first send me a written request through email explaining
+your case clearly.
+
+\noindent \textbf{Academic Integrity}: Collaboration in small groups
+on homework problems is encouraged, but your write-up must be entirely
+your own, and you may not read or copy another student’s
+solutions. You may consult books, online resources, and generative AI
+tools (e.g., ChatGPT or other LLMs) to support your learning; if you
+do, you must (i) acknowledge all such sources/tools in your write-up
+and (ii) ensure you fully understand and can independently reproduce
+and explain every step of your solution. Copying text, code, or
+solutions—verbatim or paraphrased—from any source (including AI tools)
+without clear attribution, or submitting work you do not understand,
+is cheating. Students found to be cheating risk failing the course and
+being referred to the Office of Student Conduct. 
+
+How to cite AI briefly (example): “Consulted ChatGPT for hints
+on Problem 4 (a)” 
+
+\noindent \textbf{Students with disabilities}: If you need
+accommodations for any physical, psychological, or learning
+disability, please get in touch with me so that we can make the
+necessary arrangements. 
+
+
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

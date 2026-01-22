@@ -32,15 +32,15 @@ subtitle: 'UC Berkeley, Spring 2026'
 
 ::::
 
-# Syllabus
+## Syllabus
 
-Basic information about the course can be found in the {download}`syllabus <syllabus.pdf>`.
+Basic information about the course can be found in the [syllabus](syllabus.tex).
 
-# Topics
+## Topics
 
-Here is a tentative list of {download}`topics <topics.pdf>`.
+Here is a tentative list of [topics](topics.tex).
 
-# Schedule
+## Schedule
 
 :::{schedule} ./schedule.yml
 
