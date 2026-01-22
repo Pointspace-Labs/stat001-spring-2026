@@ -21,9 +21,11 @@ project:
     #  url: http://localhost:8888
     #  token: test-secret
   plugins:
-  - schedule.mjs
+   - schedule.mjs
+   - staff.mjs
   toc:
-  - file: index.md
+   - file: index.md
+   - file: staff.md
 site:
   template: book-theme
   title: "Stat 238"
