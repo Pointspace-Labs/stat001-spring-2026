@@ -19,21 +19,13 @@
 - name: Aditya Guntuboyina
   role: Instructor
   email: aditya@stat.berkeley.edu
-  #photo: images/firefly-instructor.jpg
   office-hours:
     - when: Monday and Friday, 2pm - 3pm
       where: Evans 443
-      #link: https://berkeley.zoom.us
-  #about-me: |
-  #  I am an instructor, and here is a brief bio.
 
 - name: Reece D Huff
   role: GSI
   email: rdhuff@berkeley.edu
-  #photo: images/firefly-gsi.jpg
   office-hours:
     - when: Tuesdays 3pm - 5pm, Wednesdays 11am - 12pm
       where: Evans 444
-  #about-me: |
-  #  I am a GSI, and here is a brief bio.
-  #website: https://example.org/about-me
