@@ -40,10 +40,10 @@ jobs:
           sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
       - name: Install the plugins
         run: npm install
-      - name: Build HTML Assets
-        run: myst build --html --ci
       - name: Build PDF Exports
         run: myst build --typst --ci
+      - name: Build HTML Assets
+        run: myst build --html --ci
       - name: Inject Siteimprove analytics
         run: node inject-siteimprove.js
       - name: Upload artifact
