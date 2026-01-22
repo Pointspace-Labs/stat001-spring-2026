@@ -17,9 +17,6 @@ subtitle: 'UC Berkeley, Spring 2026'
 
 :::
 
-::::
-
-::::{grid} 1 1
 :::{card}
 :header: **Reece D Huff (GSI)**
 
