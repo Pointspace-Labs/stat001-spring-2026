@@ -1,12 +1,12 @@
 - week: 1
   days:
-    - date: 'Jan 21'
+    - date: "Jan 21"
       items:
-        - type: 'Lecture'
-          id: '1'
+        - type: "Lecture"
+          id: "1"
           name: "Introduction"
-          href: './LectureOne238Spring2026.tex'
-        - type: 'PDF'
-          id: '1'
+          href: "./LectureOne238Spring2026.tex"
+        - type: "PDF"
+          id: "1"
           name: "Introduction.pdf"
-          href: './exports/LectureOne238Spring2026.pdf'
+          href: "../exports/LectureOne238Spring2026.pdf"
