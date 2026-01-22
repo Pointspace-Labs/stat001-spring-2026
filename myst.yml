@@ -24,13 +24,27 @@ project:
    - file: staff.md
   exports:
     - format: typst
-      template: lapreprint-typst #plain_typst_book
+      template: lapreprint-typst
       article: syllabus.tex
       output: exports/syllabus.pdf
       id: syllabus-pdf
+    - format: typst
+      template: lapreprint-typst
+      article: topics.tex
+      output: exports/topics.pdf
+      id: topics-pdf
+    - format: typst
+      template: lapreprint-typst
+      article: LectureOne238Spring2026.tex
+      output: exports/lecture-one.pdf
+      id: lecture-one-pdf
   downloads:
     - id: syllabus-pdf
-      title: Download Syllabus
+      title: Download as PDF
+    - id: topics-pdf
+      title: Download as PDF
+    - id: lecture-one-pdf
+      title: Download as PDF
 
 
 site:
