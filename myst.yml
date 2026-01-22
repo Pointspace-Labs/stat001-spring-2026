@@ -32,6 +32,17 @@ project:
    - file: LectureOne238Spring2026.tex
      hidden: true
    - file: staff.md
+  exports:
+    - format: typst
+      template: lapreprint-typst #plain_typst_book
+      article: syllabus.tex
+      output: exports/syllabus.pdf
+      id: syllabus-pdf
+  downloads:
+    - id: syllabus-pdf
+      title: Download Syllabus
+
+
 site:
   template: book-theme
   title: "Stat 238"
