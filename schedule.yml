@@ -20,3 +20,15 @@
         #  id: "2"
         #  name: "Simple Examples PDF"
         #  href: "./LectureTwo238Spring2026.pdf"
+- week: 2
+  days:
+    - date: "Jan 26"
+      items:
+        - type: "Lecture"
+          id: "3"
+          name: "Normal Mean Example"
+          href: "./LectureThree238Spring2026.tex"
+        #- type: "PDF"
+        #  id: "1"
+        #  name: "LectureOne.pdf"
+        #  href: "/exports/LectureOne238Spring2026.pdf"

@@ -24,6 +24,8 @@ project:
      hidden: true
    - file: LectureTwo238Spring2026.tex
      hidden: true
+   - file: LectureThree238Spring2026.tex
+     hidden: true     
   exports:
     - format: typst
       template: lapreprint-typst

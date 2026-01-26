@@ -1,0 +1,381 @@
+%\documentclass[12pt,oneside]{amsart}
+\documentclass{scrartcl}
+
+%\documentclass{article}
+
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage[numbers]{natbib}
+
+%\usepackage[colorlinks]{hyperref}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,%
+    citecolor=black,%
+    filecolor=black,%
+    linkcolor=black,%
+    urlcolor=black
+}
+\usepackage{hypernat}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.8cm,
+right=2.8cm]{geometry} 
+
+%\setlength{\parskip}{0pt}
+%\setlength{\parsep}{0pt}
+%\setlength{\headsep}{0pt}
+%\setlength{\topskip}{0pt}
+%\setlength{\topmargin}{0pt}
+%\setlength{\topsep}{0pt}
+%\setlength{\partopsep}{0pt}
+
+\linespread{1}
+
+%\usepackage{marvosym}
+
+%\textwidth = 6.5 in \textheight = 9.2 in \oddsidemargin = 0.0 in
+%\evensidemargin = 0.0 in \topmargin = -0.0 in \headheight = 0.0 in
+%\headsep = 0.0in \parskip = 0.0in \parindent = 0.0in
+%\def\baselinestretch{0.871}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{defn}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\E}{{\mathbb E}}
+\newcommand{\se}{{\mathcal{E}}}
+\newcommand{\R}{{\mathbb R}}
+\renewcommand{\P}{{\mathbb P}}
+\newcommand{\ac}{{\mathcal{A}}}
+\newcommand{\A}{{\mathcal{A}}}
+\newcommand{\B}{{\mathcal{B}}}
+\newcommand{\C}{{\mathcal{C}}}
+\newcommand{\M}{{\mathcal{M}}}
+\newcommand{\Mf}{{\mathfrak{M}}}
+\newcommand{\T}{{\mathcal{T}}}
+\newcommand{\Z}{{\mathcal{Z}}}
+\newcommand{\K}{{\mathcal{K}}}
+\newcommand{\lc}{{\mathcal{L}}}
+\newcommand{\Ps}{{\mathcal{P}}}
+\newcommand{\G}{{\mathcal{G}}}
+\newcommand{\pa}{{\mathring{p}}}
+\newcommand{\F}{{\cal F}}
+\newcommand{\samp}{{\mathcal{X}}}
+\newcommand{\X}{{\mathcal{X}}}
+\newcommand{\hi}{{\hat{\Phi}}}
+\newcommand{\data}{{\text{data}}}
+
+\newcounter{rcnt}[section]
+\renewcommand{\thercnt}{(\roman{rcnt})}
+
+\def\qt#1{\qquad\text{#1}}
+
+\def\argmin{\mathop{\rm argmin}}
+\def\argmax{\mathop{\rm argmax}}
+
+
+\setlength{\parskip}{1.4 \medskipamount}
+%\sloppy
+%\linespread{1.3}
+
+\begin{document}
+
+\title{STAT 238 - Bayesian Statistics  \\
+  Lecture Three} 
+\subtitle{Spring 2026, UC Berkeley}
+
+\author{Aditya Guntuboyina}
+
+
+\date{26 Jan 2026}
+
+\maketitle
+
+In the last lecture, we started discussing this example. 
+
+\section{Example 3: Inference from measurements}
+
+  Suppose a scientist makes 6 numerical measurements 26.6, 38.5, 34.4,
+  34, 31, 23.6 on an unknown real-valued physical quantity
+  $\theta$. On the basis of these measurements, what can be inferred
+  about $\theta$?
+
+Here is the Bayesian solution to this problem. The first step is
+modeling where we have to write the likelihood and prior. The
+likelihood represents the probability of the observed data conditional
+on parameter values. Here the main parameter is $\theta$. In order to
+write the probability of the observed data, it is helpful to introduce
+another parameter $\sigma$ which represents the scale of the noise
+inherent in the measurement process. 
+
+So our parameter vector is $(\theta, \sigma)$. We work with the normal
+likelihood: 
+\begin{equation}\label{likeli}
+\text{Likelihood} = \prod_{i=1}^n \frac{1}{\sqrt{2 \pi} \sigma} \exp
+\left(-\frac{(x_i - 
+      \theta)^2}{2 \sigma^2} \right). 
+\end{equation}
+where $n = 6$ and $x_1 = 26.6, x_2 = 38.5, x_3 = 34.4,
+  x_4 = 34, x_5 = 31, x_6 = 23.6$ denote the observed data
+  points. More formally, you can arrive at this likelihood in the 
+  following way. Denote potential measurements by $X_1, \dots,
+  X_n$. Each actual measurement will have some 
+  rounding error so the data point 26.6 should be understood as
+  belonging to the interval $[26.6 - \delta, 26.6 + \delta]$ for some
+  small rounding error $\delta$. So the likelihood is:
+  \begin{align*}
+    \text{likelihood} &= \P\{\text{observed data} \mid \theta,
+                        \sigma\} \\ &= \P \left\{X_1
+                                      \in [x_1 - 
+                        \delta, x_1 + \delta], \dots, X_n \in [x_n -
+                                      \delta, x_n + 
+                                      \delta] \mid \theta, \sigma
+                                      \right\}.
+  \end{align*}
+Assuming $\delta$ is small, we can use probability-density
+approximation to write
+\begin{align*}
+    \text{likelihood} \approx \delta^n  f_{X_1, \dots,
+  X_n \mid \theta, \sigma}(x_1, \dots, x_n). 
+\end{align*}
+We are now assuming that:
+\begin{align}\label{baylik}
+  f_{X_1, \dots,
+  X_n \mid \theta, \sigma}(x_1, \dots, x_n) = \prod_{i=1}^n
+  \frac{1}{\sqrt{2 \pi} \sigma} \exp 
+\left(-\frac{(x_i - 
+      \theta)^2}{2 \sigma^2} \right). 
+\end{align}
+This leads to the likelihood \eqref{likeli} (note that $\delta^n$ is
+being dropped as it is a constant of proportionality which does not
+affect any further calculations). 
+
+\hrule
+
+Here is a short digression on the likelihood and the assumption
+\eqref{baylik}.
+
+A lot of the time, the likelihood assumption \eqref{baylik}  is written as:
+\begin{align}\label{baylik_usual}
+  X_1, \dots, X_n \mid \theta,\sigma \overset{\text{i.i.d}}{\sim}
+  N(\theta, \sigma^2). 
+\end{align}
+Strictly speaking \eqref{baylik} and \eqref{baylik_usual} are not the
+same. This is because \eqref{baylik_usual} is equivalent to
+\begin{align}\label{baylik_usual_full}
+  f_{X_1, \dots, X_n \mid \theta, \sigma}(u_1,\dots, u_n) = \prod_{i=1}^n
+  \frac{1}{\sqrt{2 \pi} \sigma} \exp 
+\left(-\frac{(u_i - 
+      \theta)^2}{2 \sigma^2} \right) \qt{for all $u_1, \dots, u_n \in
+  (-\infty, \infty)$} 
+\end{align}
+\eqref{baylik_usual_full} is much stronger than \eqref{baylik} because
+$u_1. \dots, u_n$ are completely arbitrary while in \eqref{baylik} the
+points $x_1, \dots, x_n$ are not arbitrary (they simply equal the
+observed data).
+
+For example, note that if we assume
+\begin{align*}
+f_{X_1, \dots, X_n \mid \theta, \sigma}(u_1,\dots, u_n)
+=
+\begin{cases}
+\displaystyle
+\prod_{i=1}^n
+\frac{1}{\sqrt{2 \pi} \sigma}
+\exp\!\left(
+-\frac{(u_i - \theta)^2}{2 \sigma^2}
+\right),
+& \text{if } u_1,\dots,u_n \in (20,30), \\[1.2em]
+\text{completely arbitrary},
+& \text{if } (u_1,\dots,u_n) \notin (20,30)^n .
+\end{cases}
+\end{align*}
+then again we arrive at the same likelihood. But now
+\eqref{baylik_usual} is no longer true. 
+
+\hrule
+
+To complete the modeling step, we need to describe the prior on
+$\theta, \sigma$. We assume
+\begin{align}\label{prior_norm}
+  \theta, \log \sigma \overset{\text{i.i.d}}{\sim} \text{uniform}(-C, C)
+\end{align}
+for a very large positive constant $C$. The idea here is that we are
+allowing $\theta$ and $\log \sigma$ to take values essentially on the
+entire real line and not expressing preference for any one value over
+any other. In terms of the densities, \eqref{prior_norm} is the same
+as
+\begin{align*}
+\text{prior} = f_{\theta, \sigma}(\theta, \sigma)
+&= f_{\theta}(\theta)\, f_{\sigma}(\sigma) \\
+&= f_{\theta}(\theta)\, f_{\log \sigma}(\log \sigma)\, \frac{1}{\sigma} \\
+&= \frac{\mathbf{1}\{-C < \theta < C\}}{2C}
+   \frac{\mathbf{1}\{-C < \log \sigma < C\}}{2C}
+   \frac{1}{\sigma} \\
+&\propto \frac{\mathbf{1}\{-C < \theta < C,\,-C < \log \sigma < C\}}{\sigma}.
+\end{align*}
+To now get the posterior (which is the joint density of $\theta,
+\sigma$ given the observed data), we use Bayes rule as
+\begin{align*}
+  \text{posterior} &= f_{\theta, \sigma \mid \text{data}}(\theta,
+                     \sigma) \\
+  &\propto f_{\theta, \sigma}(\theta, \sigma) \times \text{likelihood}
+  \\
+  &\propto \frac{\mathbf{1}\{-C < \theta < C,\,-C < \log \sigma <
+    C\}}{\sigma} \prod_{i=1}^n
+  \frac{1}{\sqrt{2 \pi} \sigma} \exp 
+\left(-\frac{(x_i - 
+    \theta)^2}{2 \sigma^2} \right) \\
+  &\propto \sigma^{-n-1} \exp\left(-\frac{1}{2
+    \sigma^2}\sum_{i=1}^n(x_i - \theta)^2 \right)\mathbf{1}\{-C < \theta < C,\,-C < \log \sigma <
+    C\}. 
+\end{align*}
+The constant underlying proportionality above is determined by the
+overall integral being one:
+\begin{align*}
+  \text{posterior} = f_{\theta, \sigma \mid \text{data}}(\theta,
+  \sigma) = \frac{\sigma^{-n-1} \exp\left(-\frac{1}{2
+    \sigma^2}\sum_{i=1}^n(x_i - \theta)^2 \right)\mathbf{1}\{-C <
+  \theta < C,\,-C < \log \sigma < 
+    C\}}{\int_{-C}^C \int_{e^{-C}}^{e^C} \sigma^{-n-1} \exp\left(-\frac{1}{2
+    \sigma^2}\sum_{i=1}^n(x_i - \theta)^2 \right) d\theta d\sigma}. 
+\end{align*}
+This is the joint posterior density of $\theta$ and $\sigma$. If we
+only want the posterior density for $\theta$, we use the sum rule of
+probability to integrate out $\sigma$:
+\begin{align*}
+  f_{\theta \mid \text{data}}(\theta) \propto \mathbf{1}\{-C <
+  \theta < C\} \int_{e^{-C}}^{e^C} \sigma^{-n-1} \exp\left(-\frac{1}{2
+    \sigma^2}\sum_{i=1}^n(x_i - \theta)^2 \right) d\sigma
+\end{align*}
+Because $C$ is large, the limits of the integral can be taken to be
+$0$ and $\infty$ leading to
+\begin{align*}
+  f_{\theta \mid \text{data}}(\theta) &\propto \mathbf{1}\{-C <
+  \theta < C\} \int_{0}^{\infty} \sigma^{-n-1} \exp\left(-\frac{1}{2
+                                        \sigma^2}\sum_{i=1}^n(x_i - \theta)^2 \right) d\sigma \\
+  &= \mathbf{1}\{-C <
+  \theta < C\} 2^{(n/2) - 1} \Gamma(n/2)\left[\sum_{i=1}^n
+    (x_i - \theta)^2 \right]^{-n/2}
+\end{align*}
+The factor $2^{(n/2) - 1} \Gamma(n/2)$ does not depend on $\theta$ so
+it can be absorbed in the constant of proportionality as well leading
+to:
+\begin{align*}
+  f_{\theta \mid \text{data}}(\theta) &\propto \mathbf{1}\{-C <
+  \theta < C\} \left(\frac{1}{S(\theta)} \right)^{n/2} 
+\end{align*}
+where $S(\theta)$ is the sum of squares term:
+\begin{align*}
+  S(\theta) = \sum_{i=1}^n (x_i - \theta)^2. 
+\end{align*}
+If $C$ is large, then the indicator can be dropped (because it will
+essentially be always 1) so the posterior becomes:
+\begin{align*}
+  f_{\theta \mid \text{data}}(\theta) &\propto
+                                        \left(\frac{1}{S(\theta)}
+                                        \right)^{n/2}. 
+\end{align*}
+Thus the posterior is inversely proportional to
+$S(\theta)^{n/2}$. This means that the posterior model will be at the
+least squares estimator which is the mean $\hat{\theta} = \bar{x} =
+(x_1 + \dots + x_n)/n$. It is cleaner to write the above posterior as:
+\begin{align*}
+  f_{\theta \mid \text{data}}(\theta) &\propto
+                                        \left(\frac{S(\hat{\theta})}{S(\theta)}
+                                        \right)^{n/2}. 
+\end{align*}
+Because $S(\theta) = S(\hat{\theta}) + n(\theta - \hat{\theta})^2$, we
+can also rewrite the posterior as: 
+\begin{align*}
+  f_{\theta \mid \text{data}}(\theta) &\propto
+                                        \left(\frac{S(\hat{\theta})}{S(\hat{\theta})
+                                        + n(\theta - \hat{\theta})^2}
+                                        \right)^{n/2} =
+                                        \left(\frac{1}{1 +
+                                        \frac{(\theta -
+                                        \hat{\theta})^2}{S(\hat{\theta})/n}}
+                                        \right)^{n/2}. 
+\end{align*}
+It can be shown (left as exercise) that this is related to the
+$t$-density (see
+\url{https://en.wikipedia.org/wiki/Student%27s_t-distribution}). Specifically,
+the above is equivalent to 
+\begin{align}\label{bayes_prob}
+\frac{\sqrt{n}(\theta - \hat{\theta})}{\sqrt{S(\hat{\theta})/(n-1)}}
+  \mid \text{data} \sim t_{n-1}
+\end{align}
+where $t_{n-1}$ denotes the $t$-density with $n-1$ degrees of
+freedom. Note that $\hat{\theta} = \bar{x}$ and $S(\hat{\theta}) =
+\sum_{i=1}^n (x_i - \bar{x})^2$.
+
+So the Bayesian point estimate is simply $\hat{\theta} = \bar{x}$
+(this is the posterior mean, median and mode!). A $100(1 - \alpha)$\%
+uncertainty interval for $\theta$ is given by:
+\begin{align}\label{cred_int}
+\left[  \hat{\theta} - \frac{1}{\sqrt{n}} t_{n-1, \alpha/2}
+  \sqrt{\frac{S(\hat{\theta})}{n-1}},   \hat{\theta} +
+  \frac{1}{\sqrt{n}} t_{n-1, \alpha/2} 
+  \sqrt{\frac{S(\hat{\theta})}{n-1}} \right] 
+\end{align}
+where $t_{n-1, \alpha/2}$ is the $(1 - \alpha/2)$ quantile of the
+Student $t$-distribution with $n-1$ degrees of freedom. This
+uncertainty interval is sometimes referred to as the Bayesian Credible
+Interval.  
+
+Check that $\alpha = 0.05$ leads to the interval $[25.598, 37.102]$.
+
+\subsection{Frequentist Solution}
+It turns out that the Bayesian credible interval \eqref{cred_int} is
+also the standard frequentist confidence interval in this
+problem. Specifically, we have (below $\bar{X} = (X_1 + \dots +
+X_n)/n$) 
+\begin{equation}\label{freq_int_prob}
+  \P \left\{\bar{X} - \frac{t_{n-1,
+      \alpha/2}}{\sqrt{n}}  
+  \sqrt{\frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2} \leq \theta \leq
+  \bar{X} + \frac{t_{n-1,
+      \alpha/2}}{\sqrt{n}}  
+  \sqrt{\frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2}  
+\right\} = 1 - \alpha
+\end{equation}
+under the assumption: 
+\begin{equation*}
+  X_1, \dots, X_n ~ \text{are i.i.d} ~ N(\theta, \sigma^2). 
+\end{equation*}
+This is because
+\begin{equation}\label{freq_prob}
+  \frac{\sqrt{n} (\bar{X} - \theta)}{S} \sim t_{n-1} \qt{where $S := \sqrt{\frac{1}{n-1} \sum_{i=1}^n \left(X_i - \bar{X}
+    \right)^2} $}. 
+\end{equation}
+In the above probability statement, $\theta$ is held fixed, and the
+probability is taken with respect to $X_1, \dots, X_n$ which are i.i.d
+$N(0, \sigma^2)$.
+
+Observe the difference between \eqref{bayes_prob} and
+\eqref{freq_prob}. In \eqref{bayes_prob}, the data is held fixed at
+the observed values and
+the probability is with respect to $\theta$. In \eqref{freq_prob},
+$\theta$ is held fixed and the probability is with respect to the
+random variables $X_1, \dots, X_n$ which are supposed to represent
+data. 
+
+In this problem, the standard Bayesian inference and standard
+frequentist inference exactly coincide.
+
+However, it is very easy to break this coincidence. We shall discuss this in the next lecture. 
+
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
