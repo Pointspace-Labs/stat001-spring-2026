@@ -10,6 +10,9 @@ project:
     content: CC-BY-4.0
   github: https://github.com/berkeley-stat238/spring-2026
   # bibliography: []
+  numbering:
+    equation:
+      enabled: true
   plugins:
    - schedule.mjs
    - staff.mjs
@@ -20,12 +23,11 @@ project:
      hidden: true
    - file: topics.tex
      hidden: true
-   - file: LectureOne238Spring2026.tex
-     hidden: true
-   - file: LectureTwo238Spring2026.tex
-     hidden: true
-   - file: LectureThree238Spring2026.tex
-     hidden: true     
+   - title: Lectures
+     children:
+       - file: LectureOne238Spring2026.tex
+       - file: LectureTwo238Spring2026.tex
+       - file: LectureThree238Spring2026.tex
   exports:
     - format: typst
       template: lapreprint-typst
@@ -42,6 +44,16 @@ project:
       article: LectureOne238Spring2026.tex
       output: exports/LectureOne238Spring2026.pdf
       id: lecture-one-pdf
+    - format: typst
+      template: lapreprint-typst
+      article: LectureTwo238Spring2026.tex
+      output: exports/LectureTwo238Spring2026.pdf
+      id: lecture-two-pdf
+    - format: typst
+      template: lapreprint-typst
+      article: LectureThree238Spring2026.tex
+      output: exports/LectureThree238Spring2026.pdf
+      id: lecture-three-pdf
 
 site:
   template: book-theme
