@@ -35,10 +35,10 @@
     - date: "Jan 27"
       items:
         - type: "Lab"
-          id: "lab1"
+          id: "1"
           name: "Bayes Rule, Law of Total Probability, and Model Selection"
           href: "./lab01.tex"
         #- type: "PDF"
-        #  id: "lab1_pdf"
+        #  id: "1"
         #  name: "lab01.pdf"
         #  href: "/exports/lab01.pdf"
