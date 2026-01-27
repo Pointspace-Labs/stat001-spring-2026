@@ -1,0 +1,418 @@
+%\documentclass[12pt,oneside]{amsart}
+\documentclass{scrartcl}
+
+%\documentclass{article}
+
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage[numbers]{natbib}
+
+%\usepackage[colorlinks]{hyperref}
+\usepackage{hyperref}
+\hypersetup{
+colorlinks,%
+citecolor=black,%
+filecolor=black,%
+linkcolor=black,%
+urlcolor=black
+}
+\usepackage{hypernat}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.8cm,
+right=2.8cm]{geometry} 
+
+%\setlength{\parskip}{0pt}
+%\setlength{\parsep}{0pt}
+%\setlength{\headsep}{0pt}
+%\setlength{\topskip}{0pt}
+%\setlength{\topmargin}{0pt}
+%\setlength{\topsep}{0pt}
+%\setlength{\partopsep}{0pt}
+
+\linespread{1}
+
+%\usepackage{marvosym}
+
+%\textwidth = 6.5 in \textheight = 9.2 in \oddsidemargin = 0.0 in
+%\evensidemargin = 0.0 in \topmargin = -0.0 in \headheight = 0.0 in
+%\headsep = 0.0in \parskip = 0.0in \parindent = 0.0in
+%\def\baselinestretch{0.871}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{defn}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\E}{{\mathbb E}}
+\newcommand{\se}{{\mathcal{E}}}
+\newcommand{\R}{{\mathbb R}}
+\renewcommand{\P}{{\mathbb P}}
+\newcommand{\ac}{{\mathcal{A}}}
+\newcommand{\A}{{\mathcal{A}}}
+\newcommand{\B}{{\mathcal{B}}}
+\newcommand{\C}{{\mathcal{C}}}
+\newcommand{\M}{{\mathcal{M}}}
+\newcommand{\Mf}{{\mathfrak{M}}}
+\newcommand{\T}{{\mathcal{T}}}
+\newcommand{\Z}{{\mathcal{Z}}}
+\newcommand{\K}{{\mathcal{K}}}
+\newcommand{\lc}{{\mathcal{L}}}
+\newcommand{\Ps}{{\mathcal{P}}}
+\newcommand{\G}{{\mathcal{G}}}
+\newcommand{\pa}{{\mathring{p}}}
+\newcommand{\F}{{\cal F}}
+\newcommand{\samp}{{\mathcal{X}}}
+\newcommand{\X}{{\mathcal{X}}}
+\newcommand{\hi}{{\hat{\Phi}}}
+\newcommand{\data}{{\text{data}}}
+
+\newcounter{rcnt}[section]
+\renewcommand{\thercnt}{(\roman{rcnt})}
+
+\def\qt#1{\qquad\text{#1}}
+
+\def\argmin{\mathop{\rm argmin}}
+\def\argmax{\mathop{\rm argmax}}
+
+
+\setlength{\parskip}{1.4 \medskipamount}
+%\sloppy
+%\linespread{1.3}
+
+\begin{document}
+
+\title{STAT 238 - Bayesian Statistics  \\
+Lab One} 
+% \subtitle{Spring 2026, UC Berkeley}
+
+\author{Aditya Guntuboyina}
+
+
+\date{27 Jan 2026}
+
+\maketitle
+
+\section{More on Example 1 from Lecture}
+
+In Lectures 1 and 2, we studied the following problem. 
+\begin{problem}
+Suppose I just tested positive for Covid. Do I really have Covid?
+\end{problem}
+
+Let $\Theta$ denote the binary parameter which represents whether I
+truly have Covid or not ($\Theta = 1$ when I have Covid and $\Theta =
+0$ when I don't). Let $X$ denote the binary outcome of the Covid test
+so that $X = 1$ represents the positive test. We need to calculate the
+probability:
+\begin{equation}\label{post_covid}
+\P \left\{\Theta = 1 \mid \text{test data} \text{ and } \text{background
+information} \right\} 
+\end{equation}
+where test data is simply $X = 1$, and the background information
+refers to things like ``I have been strictly
+quarantining for the past 3 weeks'', ``I do not have symptoms such as
+fever'' etc.
+
+We used the probability model (below $B$ stands for background
+information): 
+\begin{equation*}
+\begin{split}
+&  \text{prior: }  \P(\Theta = 1 \mid B) = 0.02  \\
+& \text{likelihood: } \P(X = 1\mid \Theta = 1, B) = 0.99 ~~~
+\P(X = 1 \mid \Theta = 0, B) = 0.04.
+\end{split}  
+\end{equation*}
+With these probability assignments, we use the Bayes rule to compute 
+\eqref{post_covid} as
+\begin{align*}
+    \P(\Theta = 1 \mid X = 1, B) &= \frac{\P(X  = 1 
+    \mid \Theta = 1, B) \P(\Theta = 1 \mid B)}{\P(X = 1
+    \mid \Theta = 1, B) \P(\Theta = 1 \mid B) + \P(X = 1
+    \mid \Theta = 0, B) \P(\Theta = 0 \mid B)} \\
+    &= \frac{0.99 *
+    0.02}{0.99 * 0.02 + 0.04*0.98} = 0.3356. 
+\end{align*}
+This probability is not very high even though the test has very good
+false positive and false negative 
+rates. This is because the prior probability $\P(\Theta = 1 \mid B)$
+is very low   ($0.02$). So, even with the positive test result, it
+is more likely than not that we are covid-free.
+
+On the other hand, if we pose the problem as hypothesis testing: 
+\begin{equation*}
+    H_0 : \Theta = 0  ~~ \text{versus} ~~ H_1: \Theta = 1
+\end{equation*}
+and calculate the $p$-value as
+\begin{equation*}
+    \P\{X = 1 | H_0\} = \P(X = 1 | \Theta = 0) = 0.04, 
+\end{equation*}
+we get a different result (if we use the standard cutoff $0.05$ on the
+$p$-value). This leads to 
+rejection of the null hypothesis and declaring that I have
+Covid.
+
+The use of $p$-values has been linked to serious issues such as lack of
+reproducibility (see for example the paper
+\cite{colquhoun2017reproducibility}). In this context, we can
+calculate the probability of reproducibility of the positive test
+as follows. Let $X_2$ denote the outcome of the second test (and
+$X_1 = X$ will now denote the outcome of the first test): 
+\begin{align*}
+    \P(X_2 = 1 | X_1 = 1, B) 
+    &= \P(X_2 = 1|\Theta = 1, X_1 = 1, B) \P(\Theta = 1 | X_1 = 1, B) 
+    \\ 
+    &+ \P(X_2 = 1 | \Theta =  0, X_1 = 1, B) \P(\Theta = 0|X_1 = 1, B). 
+\end{align*}
+To calculate the probabilities in the right hand side above, we make
+the following assignment:    
+\begin{align*}
+    & \P(X_2 = 1|\Theta = 1, X_1 = 1, B) = \P(X_2 = 1|\Theta = 1) =
+    0.99 \\ &\P(X_2 = 1| 
+    \Theta = 0, X_1 = 1, B) = \P(X_2 = 1 \mid \Theta = 0) = 0.04. 
+\end{align*}
+This assumption means that conditional on my Covid status $\Theta$,
+the two test outcomes $X_1$ and $X_2$ are independent. Using this
+assignment, it is straightforward 
+to calculate the reproducibility probability as follows (note that
+we already calculated $\P(\Theta = 1 \mid X_1 = 1, B) = 1 - \P(
+\Theta = 0 \mid X_1 = 1, B)
+= 0.3356$)
+\begin{align*}
+    \P(X_2 = 1| X_1 = 1, B) = 0.99 * 0.3356 + 0.04 * (1-0.3356) = 0.35882. 
+\end{align*}
+Thus the positive test wil be reproducible with probability only
+35.88\% which means that it is more likely to get a negative test
+the second time.   
+
+\section{Law of Total Probability and Bayes Rule}
+In Bayesian statistics, the rules of probability are used mostly for
+the following: 
+\begin{enumerate}
+\item to compute the marginal distribution of $X$ based on knowledge of
+the conditional distribution of $X$ given $\Theta = \theta$ (i.e., the
+likelihood) as well as
+the marginal distribution of $\Theta$ (i.e., the prior)
+\item to compute the conditional distribution of $\Theta$ given $X =
+x$ (i.e., the posterior)
+based on the same knowledge of the conditional distribution of $X$
+given $\Theta = \theta$ (i.e., the likelihood) as well as the marginal
+distribution of $\Theta$ (i.e., the prior). 
+\end{enumerate}
+The formula for the first item above is sometimes called the Law of
+Total Probability (LTP), while the formula for the second item is
+called the 
+Bayes Rule. The precise formulae differ according to whether $X$ and
+$\Theta$ are discrete or continuous. It is natural to consider the
+following four separate cases. 
+
+\subsection{$X$ and $\Theta$ are both discrete}
+The LTP is
+\begin{equation*}
+\P\{X = x\} = \sum_{\theta} \P \{X  = x | \Theta = \theta\}
+\P\{\Theta = \theta\}
+\end{equation*}
+and the Bayes rule is
+\begin{equation*}
+\P \{\Theta = \theta | X = x\} = \frac{\P\{X = x | \Theta =
+\theta\}\P\{\Theta = \theta\}}{\P\{X = x\}} = \frac{\P\{X = x | \Theta =
+\theta\}\P\{\Theta = \theta\}}{\sum_{\theta} \P\{X = x | \Theta =
+\theta\}\P\{\Theta = \theta\}} . 
+\end{equation*}
+
+\subsection{$X$ and $\Theta$ are both continuous}
+Here LTP is
+\begin{equation*}
+    f_X(x) = \int f_{X | \Theta = \theta}(x) f_{\Theta}(\theta) d\theta
+\end{equation*}
+and Bayes rule is
+\begin{equation*}
+    f_{\Theta | X = x}(\theta) =\frac{f_{X| \Theta = \theta}(x)
+    f_{\Theta}(\theta)}{f_X(x)} = \frac{f_{X| \Theta = \theta}(x)
+    f_{\Theta}(\theta)}{\int f_{X| \Theta = \theta}(x)
+    f_{\Theta}(\theta) dx}. 
+\end{equation*}
+
+
+\subsection{$X$ is discrete while $\Theta$ is continuous}
+LTP is
+\begin{equation*}
+    \P \{X = x\} = \int \P\{X = x | \Theta = \theta\} f_{\Theta}(\theta) d\theta
+\end{equation*}
+and Bayes rule is
+\begin{equation*}
+    f_{\Theta|X = x}(\theta) = \frac{\P\{X = x| \Theta = \theta\}
+    f_{\Theta}(\theta)}{\P\{X = x\}} =  \frac{\P\{X = x| \Theta = \theta\}
+    f_{\Theta}(\theta)}{\int \P\{X = x| \Theta = \theta\}
+    f_{\Theta}(\theta) d\theta}. 
+\end{equation*}
+
+\subsection{$X$ is continuous while $\Theta$ is discrete}
+LTP is 
+\begin{equation*}
+    f_X(x) = \sum_{\theta} f_{X| \Theta = \theta}(x) \P\{\Theta = \theta\}
+\end{equation*}
+and Bayes rule is
+\begin{equation}\label{bayescd}
+    \P\{\Theta = \theta | X = x\} = \frac{f_{X|\Theta = \theta}(x)
+    \P\{\Theta = \theta\}}{f_X(x)} = \frac{f_{X|\Theta = \theta}(x)
+    \P\{\Theta = \theta\}}{\sum_{\theta} f_{X|\Theta = \theta}(x)
+    \P\{\Theta = \theta\}}
+\end{equation}
+
+Next is a simple application for the case where $\Theta$ is discrete
+and $X$ is continuous. 
+\section{A Simple Model Selection Application}
+Suppose $\Theta$ has the $Ber(0.5)$ distribution i.e.,
+\begin{equation*}
+    \P\{\Theta = 0\} = \P \{\Theta = 1 \}  = 0.5. 
+\end{equation*}
+Next assume that $X_1, \dots, X_n$ have the following distributions
+conditional on $\Theta = \theta$:
+\begin{equation*}
+X_1, \dots, X_n \mid \Theta = 0 \overset{\text{i.i.d}}{\sim} f_0
+\qt{where $f_0(x) := \frac{1}{\sqrt{2 \pi}} \exp
+\left(-\frac{x^2}{2} \right)$} 
+\end{equation*}
+and 
+\begin{equation*}
+X_1, \dots, X_n \mid \Theta = 1 \overset{\text{i.i.d}}{\sim} f_1
+\qt{where $f_1(x) := \frac{1}{\sqrt{2 \pi}} \exp \left(-|x|
+\sqrt{\frac{2}{\pi}} \right)$}. 
+\end{equation*}
+$f_0$ is the standard normal density and $f_1$ is a Laplace
+(double-exponential) 
+density. Both densities have the same maximal value of $1/\sqrt{2
+\pi}$. Based on the information given, calculate the conditional
+distribution of $\Theta$ given $X_1 = x_1, X_2 = x_2, \dots, X_6 =
+x_6$ (i.e., $n = 6$) where
+\begin{equation}\label{d1}
+x_1 = -0.55, x_2 = -1.11, x_3 = 1.23, x_4 = 0.29, x_5 = 1.56, x_6 =
+-1.64. 
+\end{equation}
+Here is the statistical context for this question. We observe data
+$x_1, \dots, 
+x_n$ with $n = 6$. We want to use one of the models $f_0$ or $f_1$ for
+this data. The random variable $\Theta$ is used to describe the choice
+of the model. We want to treat both the models on an equal footing so
+we assumed that $\Theta$  has the uniform prior distribution
+on $\{0, 1\}$. 
+
+To calculate the conditional distribution of $\Theta$ given the data,
+we use the formula \eqref{bayescd} because $\Theta$ is discrete and
+the data $X_1, \dots, X_n$ are continuous. This gives
+\begin{align*}
+    &\P\{\Theta = 0 \mid X_1 = x_1, \dots, X_n = x_n\} \\ &= \frac{f_{X_1,
+    \dots, X_n \mid
+    \Theta = 0}(x_1,
+    \dots, x_n)
+    \P\{\Theta = 0\}}{f_{X_1,
+    \dots, X_n\mid
+    \Theta= 0}(x_1,
+    \dots, x_n)
+    \P\{\Theta = 0\}
+    + f_{X_1,
+    \dots, X_n \mid
+    \Theta = 1}(x_1,
+    \dots, x_n)
+    \P\{\Theta =
+    1\}} \\
+    &= \frac{f_{X_1,
+    \dots, X_n \mid
+    \Theta = 0}(x_1,
+    \dots, x_n)
+    \times \frac{1}{2}
+    }{f_{X_1,
+    \dots, X_n\mid
+    \Theta= 0}(x_1,
+    \dots, x_n) \times
+    \frac{1}{2}
+    + f_{X_1,
+    \dots, X_n \mid
+    \Theta = 1}(x_1,
+    \dots, x_n)
+    \times \frac{1}{2}
+    } \\
+    &= \frac{f_{X_1,
+    \dots, X_n \mid
+    \Theta = 0}(x_1,
+    \dots, x_n)
+    }{f_{X_1,
+    \dots, X_n\mid
+    \Theta= 0}(x_1,
+    \dots, x_n)  + f_{X_1,
+    \dots, X_n \mid
+    \Theta = 1}(x_1,
+    \dots, x_n)} \\
+    &= \frac{f_0(x_1) f_0(x_2) \dots f_0(x_n)}{f_0(x_1) f_0(x_2) \dots
+    f_0(x_n) + f_1(x_1) f_1(x_2) \dots f_1(x_n)} \\
+    &= \frac{\left(\frac{1}{\sqrt{2 \pi}} \right)^n \exp
+    \left(-\frac{1}{2}
+    \sum_{i=1}^n x_i^2 \right)}{\left(\frac{1}{\sqrt{2 \pi}} \right)^n \exp
+    \left(-\frac{1}{2}
+    \sum_{i=1}^n x_i^2
+    \right) + \left(\frac{1}{\sqrt{2 \pi}} \right)^n \exp
+    \left(-\sqrt{\frac{2}{\pi}}
+    \sum_{i=1}^n |x_i| \right)}
+    \\
+    &= \frac{ \exp
+    \left(-\frac{1}{2}
+    \sum_{i=1}^n x_i^2 \right)}{ \exp
+    \left(-\frac{1}{2}
+    \sum_{i=1}^n x_i^2
+    \right) + \exp
+    \left(-\sqrt{\frac{2}{\pi}}
+    \sum_{i=1}^n |x_i| \right)}.
+\end{align*}
+Similarly
+\begin{align*}
+    \P\{\Theta = 1 \mid X_1 = x_1, \dots, X_n = x_n\}
+    = \frac{ \exp
+    \left(-\sqrt{\frac{2}{\pi}}
+    \sum_{i=1}^n |x_i| \right)}{ \exp
+    \left(-\frac{1}{2}
+    \sum_{i=1}^n x_i^2
+    \right) + \exp
+    \left(-\sqrt{\frac{2}{\pi}}
+    \sum_{i=1}^n |x_i| \right)}.
+\end{align*}
+Plugging in the above formula the data values given in \eqref{d1} for
+$x_1, \dots, x_6$, we obtain
+\begin{equation*}
+    \P\{\Theta = 0 \mid X_1 = x_1, \dots, X_6 = x_6\}  =  0.72 ~~ \text{ and
+    } ~~ \P\{\Theta = 1 \mid X_1 = x_1, \dots, X_6 = x_6\}  = 0.28
+\end{equation*}
+Thus, conditioning on the data, we have a $72 \%$ probability for the
+normal model compared to $28\%$ probability for the Laplace
+model. So we would prefer to use the normal distribution here. 
+
+Now suppose that we add in an additional observation $x_7 =
+5$. It can be checked that
+\begin{equation*}
+    \P\{\Theta = 0 \mid X_1 = x_1, \dots, X_7 = x_7\}  =  0.001 ~ \text{ and
+    } ~ \P\{\Theta = 1 \mid X_1 = x_1, \dots, X_7 = x_7\}  = 0.999
+\end{equation*}
+Now there is overwhelming preference for the Laplace model. This is
+because $x_7 = 5$ is an outlying observation to which the Laplace model
+gives much higher probability compared to the Normal model owing to
+heavy tails of the Laplace density. 
+
+\begin{thebibliography}{9}
+
+\bibitem{colquhoun2017reproducibility}
+David Colquhoun.
+\newblock The reproducibility of research and the misinterpretation of
+p-values.
+\newblock \emph{Royal Society Open Science}, 4(12):171085, 2017.
+
+\end{thebibliography}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
