@@ -26,8 +26,11 @@ project:
    - title: Lectures
      children:
        - file: LectureOne238Spring2026.tex
+         title: "1"
        - file: LectureTwo238Spring2026.tex
+         title: "2"
        - file: LectureThree238Spring2026.tex
+         title: "3"
   exports:
     - format: typst
       template: lapreprint-typst
