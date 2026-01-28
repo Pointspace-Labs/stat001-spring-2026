@@ -1,10 +1,10 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 project:
-  title: "Stat 238"
-  description: "Bayesian Statistics"
+  title: "Introduction to Data Analysis, Machine Learning, and Artificial Intelligence"
+  description: ""
   keywords: []
-  #authors: ["Aditya Guntuboyina"]
+  #authors: ["Harishankar Raghunath"]
   license:
     # code: MIT
     content: CC-BY-4.0
@@ -64,7 +64,7 @@ project:
 
 site:
   template: book-theme
-  title: "Stat 238"
+  title: "Stat 001"
   options:
     logo: "stat_bear.png"
     style: custom.css
