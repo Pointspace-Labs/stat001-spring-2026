@@ -1,3 +1,5 @@
+# test
+
 # course-site-myst
 
 This repository contains a MyST-based template for class website. You can see a preview of it at [https://berkeley-cdss.github.io/course-site-myst](https://berkeley-cdss.github.io/course-site-myst). This template is intended to be forked and altered for other courses.
