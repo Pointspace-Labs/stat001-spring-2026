@@ -31,6 +31,10 @@ project:
          title: "2"
        - file: LectureThree238Spring2026.tex
          title: "3"
+   - title: Labs
+     children:
+       - file: lab01.tex
+         title: "1"
   exports:
     - format: typst
       template: lapreprint-typst
