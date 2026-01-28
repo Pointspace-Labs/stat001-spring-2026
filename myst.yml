@@ -70,7 +70,7 @@ site:
     style: custom.css
   nav: []
   actions:
-  - title: Ed
+  - title: Test
     url: https://edstem.org
   - title: DataHub
     url: https://datahub.berkeley.edu
